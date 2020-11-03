@@ -5,12 +5,12 @@ Subject: [PATCH] Attempt to make supported protocol id checking faster
 
 
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java b/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
-index f33bb5c4c17486fa50cb20eaacb2bb8f6aa2cf54..e02fa9b6ad24b550880254a282460da0b61a0fbe 100644
+index 30b4d05940fcfbfc79977d9750c0bdf0f154031e..5c37cc3029153b4e40fcb7134a71c8b6f34f2a5e 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
-@@ -71,6 +71,28 @@ public class ProtocolConstants
-             ProtocolConstants.MINECRAFT_1_16_2,
-             ProtocolConstants.MINECRAFT_1_16_3
+@@ -73,6 +73,28 @@ public class ProtocolConstants
+             ProtocolConstants.MINECRAFT_1_16_3, // Waterfall
+             ProtocolConstants.MINECRAFT_1_16_4 // Waterfall
      );
 +    // Firefly start
 +    public static final int LOWEST_SUPPORTED_VERSION_ID;
@@ -51,7 +51,7 @@ index 3a3c2fbd39874de0991571fa1f4c84aedc42b68c..476636ee2ced03825d6233fc0d7e584c
  
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index c69ed1d989d023a895cde8b27c8c4ea50ee2b505..2415630448283eae4c5ea28ded01172b8a16c746 100644
+index 2112d9fd5fd04715442a844d4359f3281f258b25..1565380bada55322527d6b23741e33510ecb3666 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 @@ -237,7 +237,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
